@@ -2,42 +2,166 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting to YouTube...</title>
-
-    <!-- Auto redirect after 3 seconds -->
-    <meta http-equiv="refresh" content="3;url=https://www.youtube.com/@rasheradhe-editz">
-
+    <title>Redirecting to YouTube Channel</title>
     <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #0f0f0f;
-            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-top: 20%;
-        }
-        a {
-            color: red;
-            font-size: 20px;
-            text-decoration: none;
-            border: 2px solid red;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        a:hover {
-            background: red;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ganesh Ji background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            /* Replace the URL with your uploaded Ganesh Ji image */
+            background: url('https://raw.githubusercontent.com/yasjraj077-code/rasheradhe-editz/main/ganesh.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.35; /* make it visible but not overpowering */
+            z-index: 0;
+        }
+
+        /* Container for content */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(0,0,0,0.7);
+            padding: 50px 70px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ff0000;
+            animation: bounce 1s infinite alternate;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            font-weight: bold;
+            color: #ff5555;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        a.button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            padding: 14px 40px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255,0,0,0.5);
+        }
+
+        a.button img {
+            width: 24px;
+            margin-right: 10px;
+        }
+
+        a.button:hover {
+            background-color: #e60000;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255,0,0,0.7);
+        }
+
+        .small {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 10px;
+            background-color: #ff0000;
+            transition: width 0.1s linear;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-10px);}
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>🚀 Redirecting to My YouTube Channel!</h1>
+        <p>You will be redirected in <span class="countdown">15</span> seconds</p>
 
-    <h1>Redirecting to my YouTube Channel 🚀</h1>
-    <p>You’ll be redirected in 3 seconds...</p>
+        <!-- Progress bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
 
-    <p>If not, click below:</p>
-    <a href="https://www.youtube.com/@rasheradhe-editz" target="_blank">
-        Go to @rasheradhe-editz
-    </a>
+        <!-- Manual redirect button -->
+        <a href="https://www.youtube.com/@rasheradhe-editz" target="_blank" class="button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">
+            Go to @rasheradhe-editz
+        </a>
 
+        <div class="small">If the redirect doesn't work, click the button above.</div>
+    </div>
+
+    <script>
+        let countdown = 15;
+        const countdownEl = document.querySelector('.countdown');
+        const progressBar = document.getElementById('progress');
+
+        const interval = setInterval(() => {
+            countdown--;
+            countdownEl.textContent = countdown;
+
+            // Update progress bar
+            progressBar.style.width = ((15 - countdown)/15*100) + '%';
+
+            if(countdown <= 0){
+                clearInterval(interval);
+                window.location.href = "https://www.youtube.com/@rasheradhe-editz";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
